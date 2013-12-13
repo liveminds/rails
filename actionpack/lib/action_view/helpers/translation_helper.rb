@@ -47,7 +47,7 @@ module ActionView
         options.merge!(:rescue_format => :html) unless options.key?(:rescue_format)
         if html_safe_translation_key?(key)
           html_safe_options = options.dup
-          options.except(*I18n::RESERVED_KEYS).each do |name, value|
+          options.except(*I18n::Backend::Base::RESERVED_KEYS).each do |name, value|
             unless name == :count && value.is_a?(Numeric)
               html_safe_options[name] = ERB::Util.html_escape(value.to_s)
             end
